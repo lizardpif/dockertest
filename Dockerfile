@@ -1,3 +1,6 @@
-FROM ubuntu
+FROM golang
 
-RUN apt update && apt install golang -y && apt-get install git -y && go get github.com/CossackPyra/pyraconv && go clone https://github.com/lizardpif/dockertest.git && cd test && go run test.go
+ADD . /code
+WORKDIR /code
+RUN go get github.com/CossackPyra/pyraconv
+CMD go run test.go
